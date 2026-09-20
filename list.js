@@ -111,7 +111,7 @@ async function loadCustomers() {
     try {
         const snapshot = await customersCollection
             .orderBy("name")
-            .where(checkin === "true")
+            .where("checkIn" === "true")
             .get();
 
         customers = snapshot.docs.map(doc => ({
