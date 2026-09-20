@@ -116,9 +116,7 @@ async function loadCustomers() {
         customers = snapshot.docs.map(doc => ({
             documentId: doc.id,
             ...doc.data()
-        })).filter(customer => {
-            customer.checkIn === true;
-        });
+        })).filter(customer => customer.checkIn === true);
 
         renderCustomers(customers);
     } catch (error) {
