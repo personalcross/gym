@@ -110,14 +110,15 @@ async function loadCustomers() {
 
     try {
         const snapshot = await customersCollection
-            .where("checkIn", "==", true)
             .orderBy("name")
             .get();
 
         customers = snapshot.docs.map(doc => ({
             documentId: doc.id,
             ...doc.data()
-        }));
+        })).filter(customer => {
+            customer.checkIn === true;
+        });
 
         renderCustomers(customers);
     } catch (error) {
